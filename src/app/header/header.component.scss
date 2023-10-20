@@ -1,14 +1,19 @@
-.menu-icon{
-    cursor: pointer;
-    color: white;  
-}
-
-.menu-button{
-    background-color: #673ab7;
-    border: none;
-}
-
 .logo{
-    padding-left: 15px;
+    padding-left: 30px;
     padding-bottom: 4px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+
+.header{
+    &-button{
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    &-button-first{
+        font-weight: bold;
+        margin-left: 40px;
+    }
 }
