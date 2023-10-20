@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './header/header.component';
 import { MatButtonModule } from '@angular/material/button';
+import { PostsModule } from './posts/posts.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    PostsModule
     
   ],
   providers: [],
