@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PostsComponent } from './posts/posts.component';
-import { ViewPostsComponent } from './posts/components/view-posts/view-posts.component';
-import { AddPostComponent } from './posts/components/add-post/add-post.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'posts/view-posts', pathMatch: 'full'},
-  { path: 'posts', component: PostsComponent, children:[
-    { path: 'view-posts', component: ViewPostsComponent},
-    { path: 'add-post', component: AddPostComponent}
-  ]  }
+  { path: '', redirectTo: 'posts', pathMatch: 'full'},
+  {
+    path: 'posts',
+    component: PostsComponent,
+    loadChildren: () => import('./posts/posts.module').then(x => x.PostsModule)
+  }
 ];
 
 @NgModule({
