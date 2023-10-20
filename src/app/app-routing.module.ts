@@ -5,6 +5,7 @@ import { ViewPostsComponent } from './posts/components/view-posts/view-posts.com
 import { AddPostComponent } from './posts/components/add-post/add-post.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'posts/view-posts', pathMatch: 'full'},
   { path: 'posts', component: PostsComponent, children:[
     { path: 'view-posts', component: ViewPostsComponent},
     { path: 'add-post', component: AddPostComponent}
