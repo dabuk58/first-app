@@ -1,0 +1,17 @@
+.container{
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.card-center{
+    display: flex;
+    align-items: center;
+}
+
+mat-card-header{
+   color: #673ab7;
+   margin-bottom: 25px;
+}

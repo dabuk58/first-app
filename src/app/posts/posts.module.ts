@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { PostsRoutingModule } from './posts-routing.module';
 import { PostsService } from './services/posts.service';
 import { MaterialModule } from '../shared/material.module';
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 
 
@@ -20,7 +21,9 @@ import { MaterialModule } from '../shared/material.module';
     CommonModule,
     RouterModule,
     PostsRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers:[PostsService]
 })
