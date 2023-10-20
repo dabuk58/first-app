@@ -9,20 +9,22 @@ import { Subject, Subscription } from 'rxjs';
   styleUrls: ['./view-posts.component.scss']
 })
 export class ViewPostsComponent implements OnInit, OnDestroy{
-  // private posts = new Subject<Post[]>();
-  private posts: Post[] = [];
-  private subscription!: Subscription;
+  posts: Post[] = [];
+
 
   constructor(private postsService: PostsService){}
 
   ngOnInit(): void {
-    this.subscription = this.postsService.fetchPosts().subscribe(post => {
-      this.posts = post;
+    this.postsService.fetchPosts();
+    this.postsService.posts.subscribe(posts => {
+      this.posts = posts;
     });
   }
 
+
+
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  
   }
 
 }
