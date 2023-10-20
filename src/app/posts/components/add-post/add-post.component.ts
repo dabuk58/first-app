@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-post',
@@ -16,16 +16,24 @@ export class AddPostComponent{
         updateOn: 'blur',
         validators: [
           Validators.required,
-          Validators.min(3),
-          Validators.max(20)
+          Validators.minLength(3),
+          Validators.maxLength(20)
         ]
       }),
       postBody: new FormControl(null, {
         updateOn: 'blur',
         validators: [
           Validators.required,
-          Validators.min(30),
-          Validators.max(200)
+          Validators.minLength(30),
+          Validators.maxLength(200)
+        ]
+      }),
+      postUser: new FormControl(null, {
+        updateOn: 'blur',
+        validators: [
+          Validators.required,
+          Validators.min(1),
+          Validators.max(10)
         ]
       }),
     })
@@ -34,7 +42,7 @@ export class AddPostComponent{
   getTitleErrorMessage(){
     if (this.formGroup.get('postTitle')?.hasError('required')){
       return 'You must enter a title';
-    } else if (this.formGroup.get('postTitle')?.hasError('min')){
+    } else if (this.formGroup.get('postTitle')?.hasError('minLength')){
       return 'Minimal length is 3';
     } else {
       return 'Maximum length is 20';
@@ -44,10 +52,22 @@ export class AddPostComponent{
   getBodyErrorMessage(){
     if (this.formGroup.get('postBody')?.hasError('required')){
       return 'You must type something';
-    } else if (this.formGroup.get('postBody')?.hasError('min')){
+    } else if (this.formGroup.get('postBody')?.hasError('minLength')){
       return 'Minimal length is 30';
-    } else {
+    } else if (this.formGroup.get('postBody')?.hasError('maxLength')){
       return 'Maximum length is 200';
+    } else {
+      return '';
+    }
+  }
+
+  getUserErrorMessage(){
+    if (this.formGroup.get('postUser')?.hasError('required')){
+      return 'You must enter user id';
+    } else if (this.formGroup.get('postUser')?.hasError('min')){
+      return 'Users starts with number one!';
+    } else {
+      return 'Last user id is 10!';
     }
   }
 
