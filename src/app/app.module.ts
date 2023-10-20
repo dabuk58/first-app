@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 
 import { PostsModule } from './posts/posts.module';
 import { MaterialModule } from './shared/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MaterialModule } from './shared/material.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     PostsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
     
   ],
   providers: [],

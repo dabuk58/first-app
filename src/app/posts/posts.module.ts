@@ -5,6 +5,8 @@ import { AddPostComponent } from './components/add-post/add-post.component';
 import { ViewPostsComponent } from './components/view-posts/view-posts.component';
 import { RouterModule } from '@angular/router';
 import { PostsRoutingModule } from './posts-routing.module';
+import { PostsService } from './services/posts.service';
+import { MaterialModule } from '../shared/material.module';
 
 
 
@@ -17,7 +19,9 @@ import { PostsRoutingModule } from './posts-routing.module';
   imports: [
     CommonModule,
     RouterModule,
-    PostsRoutingModule
-  ]
+    PostsRoutingModule,
+    MaterialModule
+  ],
+  providers:[PostsService]
 })
 export class PostsModule { }
