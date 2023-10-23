@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../models/post.model';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, tap } from 'rxjs';
 
 @Injectable()
 export class PostsService {
@@ -15,7 +15,7 @@ export class PostsService {
 
   fetchPosts(){
     return this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts')
-      .pipe(map(post => {
+      .pipe(tap(posts => console.log(posts)),map(post => {
         return post.map(
           postData => new Post(
             postData.userId,
@@ -23,8 +23,8 @@ export class PostsService {
             postData.title,
             postData.body
           ));
-      })).subscribe(post => {
-        this._posts.next(post);
+      }), tap(posts => console.log(posts))).subscribe(posts => {
+        this._posts.next(posts);
       });
   }
 

@@ -1,9 +1,4 @@
 import { CanDeactivateFn } from '@angular/router';
-import { Observable } from 'rxjs';
-
-export interface CanComponentDeactivate{
-  canDeactivate: () => boolean | Promise<boolean> | Observable<boolean>;
-}
 
 export const addPostGuard: CanDeactivateFn<unknown> = (component: any, currentRoute, currentState, nextState) => {
   console.log(component.formGroup.controls.postTitle.dirty);
