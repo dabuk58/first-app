@@ -4,8 +4,6 @@ import { PostsService } from '../../services/posts.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
-//TODO dyrektywa ograniczająca wpisywanie znaków w polu user id
-
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
@@ -14,6 +12,7 @@ import { Router } from '@angular/router';
 export class AddPostComponent implements OnInit, OnDestroy{
   formGroup!: FormGroup;
   subscription!: Subscription;
+  isAdded: boolean = false;
 
   constructor(private postsService: PostsService,
               private router: Router){}
@@ -59,14 +58,17 @@ export class AddPostComponent implements OnInit, OnDestroy{
     const body = this.formGroup.get('postBody')?.value;
     this.subscription = this.postsService.addPost(userId, title, body).subscribe(resultData => {
       console.log(resultData);
+      this.isAdded = true;
       this.router.navigateByUrl('/posts/view-posts');
     });
   }
 
   getTitleErrorMessage(){
-    if (this.formGroup.get('postTitle')?.hasError('required')){
+    const control = this.formGroup.get('postTitle');
+
+    if (control?.hasError('required')){
       return 'You must enter a title';
-    } else if (this.formGroup.get('postTitle')?.hasError('minLength')){
+    } else if (control?.hasError('minLength')){
       return 'Minimal length is 3';
     } else {
       return 'Maximum length is 20';
@@ -74,11 +76,13 @@ export class AddPostComponent implements OnInit, OnDestroy{
   }
 
   getBodyErrorMessage(){
-    if (this.formGroup.get('postBody')?.hasError('required')){
+    const control = this.formGroup.get('postBody');
+
+    if (control?.hasError('required')){
       return 'You must type something';
-    } else if (this.formGroup.get('postBody')?.hasError('minLength')){
+    } else if (control?.hasError('minLength')){
       return 'Minimal length is 30';
-    } else if (this.formGroup.get('postBody')?.hasError('maxLength')){
+    } else if (control?.hasError('maxLength')){
       return 'Maximum length is 200';
     } else {
       return '';
@@ -86,12 +90,13 @@ export class AddPostComponent implements OnInit, OnDestroy{
   }
 
   getUserErrorMessage(){
-    if (this.formGroup.get('postUser')?.hasError('required')){
+    const control = this.formGroup.get('postUser');
+    if (control?.hasError('required')){
       return 'You must enter user id';
-    } else if (this.formGroup.get('postUser')?.hasError('min')){
-      return 'Users starts with number one!';
+    } else if (control?.hasError('min') || control?.hasError('max')){
+      return 'Enter number between 1 and 10';
     } else {
-      return 'Last user id is 10!';
+      return '';
     }
   }
 
