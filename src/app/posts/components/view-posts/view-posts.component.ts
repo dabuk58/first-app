@@ -10,7 +10,7 @@ import { Subject, Subscription } from 'rxjs';
 })
 export class ViewPostsComponent implements OnInit, OnDestroy{
   posts: Post[] = [];
-
+  isLoading = true;
 
   constructor(private postsService: PostsService){}
 
@@ -18,6 +18,7 @@ export class ViewPostsComponent implements OnInit, OnDestroy{
     this.postsService.fetchPosts();
     this.postsService.posts.subscribe(posts => {
       this.posts = posts;
+      this.isLoading = false;
     });
   }
 
