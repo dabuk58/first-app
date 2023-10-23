@@ -23,6 +23,7 @@
                     <mat-error *ngIf="formGroup.get('postUser')?.invalid">{{ getUserErrorMessage() }}</mat-error>
                 </mat-form-field>
             </form>
+            <button mat-raised-button class="button-text" [disabled]="formGroup.invalid" (click)="onAddPost()">Add new post</button>
         </mat-card-content>
     </mat-card>
 </div>

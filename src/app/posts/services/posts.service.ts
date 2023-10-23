@@ -31,6 +31,7 @@ export class PostsService {
   addPost(userId: number, title: string, body: string){
     const newPostId = this._posts.value.length + 1;
     const postData: Post = { userId, id: newPostId, title, body};
+    this._posts.next([...this._posts.getValue(), postData]);
     return this.http.post<Post>('https://jsonplaceholder.typicode.com/posts', postData);
   }
 

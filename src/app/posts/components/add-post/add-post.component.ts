@@ -1,16 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { PostsService } from '../../services/posts.service';
+import { Subscription } from 'rxjs';
+
+//TODO dyrektywa ograniczająca wpisywanie znaków w polu user id
 
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.scss']
 })
-export class AddPostComponent{
-  formGroup: FormGroup;
+export class AddPostComponent implements OnInit, OnDestroy{
+  formGroup!: FormGroup;
+  subscription!: Subscription;
 
+  constructor(private postsService: PostsService){}
 
-  constructor(){
+  ngOnInit(): void {
     this.formGroup = new FormGroup({
       postTitle: new FormControl(null, {
         updateOn: 'blur',
@@ -37,6 +43,19 @@ export class AddPostComponent{
         ]
       }),
     })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  onAddPost(){
+    const userId = this.formGroup.get('postUser')?.value;
+    const title = this.formGroup.get('postTitle')?.value;
+    const body = this.formGroup.get('postBody')?.value;
+    this.subscription = this.postsService.addPost(userId, title, body).subscribe(resultData => {
+      console.log(resultData);
+    });
   }
 
   getTitleErrorMessage(){
