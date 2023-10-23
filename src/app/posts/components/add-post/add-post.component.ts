@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { PostsService } from '../../services/posts.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 //TODO dyrektywa ograniczająca wpisywanie znaków w polu user id
 
@@ -14,7 +15,8 @@ export class AddPostComponent implements OnInit, OnDestroy{
   formGroup!: FormGroup;
   subscription!: Subscription;
 
-  constructor(private postsService: PostsService){}
+  constructor(private postsService: PostsService,
+              private router: Router){}
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -57,6 +59,7 @@ export class AddPostComponent implements OnInit, OnDestroy{
     const body = this.formGroup.get('postBody')?.value;
     this.subscription = this.postsService.addPost(userId, title, body).subscribe(resultData => {
       console.log(resultData);
+      this.router.navigateByUrl('/posts/view-posts');
     });
   }
 
