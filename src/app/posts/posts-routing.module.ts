@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ViewPostsComponent } from './components/view-posts/view-posts.component';
 import { AddPostComponent } from './components/add-post/add-post.component';
+import { addPostGuard } from '../guards/add-post.guard';
 
 const routes: Routes = [
     { path: '', redirectTo: 'view-posts', pathMatch: 'full'},
     { path: 'view-posts', component: ViewPostsComponent},
-    { path: 'add-post', component: AddPostComponent}
+    { path: 'add-post', component: AddPostComponent, canDeactivate: [addPostGuard]}
 ];
 
 @NgModule({
