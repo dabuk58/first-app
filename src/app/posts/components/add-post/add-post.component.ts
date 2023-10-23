@@ -68,7 +68,7 @@ export class AddPostComponent implements OnInit, OnDestroy{
 
     if (control?.hasError('required')){
       return 'You must enter a title';
-    } else if (control?.hasError('minLength')){
+    } else if (control?.hasError('minlength')){
       return 'Minimal length is 3';
     } else {
       return 'Maximum length is 20';
@@ -80,23 +80,20 @@ export class AddPostComponent implements OnInit, OnDestroy{
 
     if (control?.hasError('required')){
       return 'You must type something';
-    } else if (control?.hasError('minLength')){
+    } else if (control?.hasError('minlength')){
       return 'Minimal length is 30';
-    } else if (control?.hasError('maxLength')){
+    } else{
       return 'Maximum length is 200';
-    } else {
-      return '';
     }
   }
 
   getUserErrorMessage(){
     const control = this.formGroup.get('postUser');
+    
     if (control?.hasError('required')){
       return 'You must enter user id';
-    } else if (control?.hasError('min') || control?.hasError('max')){
+    } else{
       return 'Enter number between 1 and 10';
-    } else {
-      return '';
     }
   }
 
