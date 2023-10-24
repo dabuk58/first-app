@@ -57,7 +57,6 @@ export class AddPostComponent implements OnInit, OnDestroy{
     const title = this.formGroup.get('postTitle')?.value;
     const body = this.formGroup.get('postBody')?.value;
     this.subscription = this.postsService.addPost(userId, title, body).subscribe(resultData => {
-      console.log(resultData);
       this.isAdded = true;
       this.router.navigateByUrl('/posts');
     });

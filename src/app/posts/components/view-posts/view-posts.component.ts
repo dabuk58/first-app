@@ -16,11 +16,10 @@ export class ViewPostsComponent implements OnInit, OnDestroy{
   constructor(private postsService: PostsService){}
 
   ngOnInit(): void {
-    this.postsService.fetchPosts();
-    this.sub = this.postsService.posts.subscribe(posts => {
+    this.postsService.fetchPosts().subscribe(posts => {
       this.posts = posts;
       this.isLoading = false;
-    });
+    });;
   }
 
   ngOnDestroy(): void {
