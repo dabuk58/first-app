@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from './shared/material.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ModifyUrlInterceptor } from './posts/interceptors/modify-url.interceptor';
+import { FilterNumbersInterceptor } from './posts/interceptors/filter-numbers.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { ModifyUrlInterceptor } from './posts/interceptors/modify-url.intercepto
   ],
   providers: [
   { provide: HTTP_INTERCEPTORS, useClass: ModifyUrlInterceptor, multi: true },
-  
+  { provide: HTTP_INTERCEPTORS, useClass: FilterNumbersInterceptor, multi: true },
 ],
   bootstrap: [AppComponent]
 })
