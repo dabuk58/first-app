@@ -8,6 +8,8 @@ import { PostsRoutingModule } from './posts-routing.module';
 import { PostsService } from './services/posts.service';
 import { MaterialModule } from '../shared/material.module';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ModifyUrlInterceptor } from './interceptors/modify-url.interceptor';
 
 
 
@@ -25,6 +27,8 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers:[PostsService]
+  providers:[
+    PostsService,
+  ]
 })
 export class PostsModule { }

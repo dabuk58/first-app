@@ -7,7 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 
 import { MaterialModule } from './shared/material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ModifyUrlInterceptor } from './posts/interceptors/modify-url.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,10 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+  { provide: HTTP_INTERCEPTORS, useClass: ModifyUrlInterceptor, multi: true },
+  
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
