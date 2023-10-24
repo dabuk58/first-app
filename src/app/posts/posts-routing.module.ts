@@ -5,8 +5,7 @@ import { AddPostComponent } from './components/add-post/add-post.component';
 import { addPostGuard } from '../guards/add-post.guard';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'view-posts', pathMatch: 'full'},
-    { path: 'view-posts', component: ViewPostsComponent},
+    { path: '', component: ViewPostsComponent},
     { path: 'add-post', component: AddPostComponent, canDeactivate: [addPostGuard]}
 ];
 

@@ -59,7 +59,7 @@ export class AddPostComponent implements OnInit, OnDestroy{
     this.subscription = this.postsService.addPost(userId, title, body).subscribe(resultData => {
       console.log(resultData);
       this.isAdded = true;
-      this.router.navigateByUrl('/posts/view-posts');
+      this.router.navigateByUrl('/posts');
     });
   }
 
