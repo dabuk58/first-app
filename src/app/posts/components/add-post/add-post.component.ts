@@ -20,7 +20,7 @@ export class AddPostComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.formGroup = new FormGroup({
       postTitle: new FormControl(null, {
-        updateOn: 'blur',
+        updateOn: 'change',
         validators: [
           Validators.required,
           Validators.minLength(3),
@@ -28,7 +28,7 @@ export class AddPostComponent implements OnInit, OnDestroy{
         ]
       }),
       postBody: new FormControl(null, {
-        updateOn: 'blur',
+        updateOn: 'change',
         validators: [
           Validators.required,
           Validators.minLength(30),
@@ -36,7 +36,7 @@ export class AddPostComponent implements OnInit, OnDestroy{
         ]
       }),
       postUser: new FormControl(null, {
-        updateOn: 'blur',
+        updateOn: 'change',
         validators: [
           Validators.required,
           Validators.min(1),
@@ -89,7 +89,7 @@ export class AddPostComponent implements OnInit, OnDestroy{
 
   getUserErrorMessage(){
     const control = this.formGroup.get('postUser');
-    
+
     if (control?.hasError('required')){
       return 'You must enter user id';
     } else{
