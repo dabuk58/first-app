@@ -15,15 +15,7 @@ export class PostsService {
 
   fetchPosts(){
     return this.http.get<Post[]>('https://urlToChange/posts')
-      .pipe(map(post => {
-        return post.map(
-          postData => new Post(
-            postData.userId,
-            postData.id,
-            postData.title,
-            postData.body
-          ));
-      }), tap(posts => {
+      .pipe(tap(posts => {
         this._posts.next(posts);
       }));
   }
