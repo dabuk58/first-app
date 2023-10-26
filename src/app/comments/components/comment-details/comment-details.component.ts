@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { CommentData } from '../../models/comment.model';
+import { BehaviorSubject } from 'rxjs';
+import { LikesService } from 'src/app/services/likes.service';
 
 @Component({
   selector: 'app-comment-details',
@@ -9,8 +11,13 @@ import { CommentData } from '../../models/comment.model';
 export class CommentDetailsComponent implements OnInit{
   @Input() comments!: CommentData[];
 
+  constructor(private likesService: LikesService){}
+
   ngOnInit(): void {
-    console.log(this.comments);
+    
   }
 
+  onLike(){
+    this.likesService.addLike();
+  }
 }
