@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../posts/models/post.model';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Subscription, map, tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 
 @Injectable()
 export class PostsService {
