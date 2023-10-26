@@ -6,13 +6,14 @@ const routes: Routes = [
   { path: '', redirectTo: 'posts', pathMatch: 'full'},
   {
     path: 'posts',
-    component: PostsComponent,
     loadChildren: () => import('./posts/posts.module').then(x => x.PostsModule)
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    bindToComponentInputs: true
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
