@@ -10,5 +10,6 @@ export const commentResolver: ResolveFn<any> = (route: ActivatedRouteSnapshot, s
     return commentService.fetchComments(postId)
         .pipe(map(
             comments => comments.slice(0,3)
-            ));
+            )
+        );
 }
