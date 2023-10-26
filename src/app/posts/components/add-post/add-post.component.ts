@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { PostsService } from '../../services/posts.service';
+import { PostsService } from '../../../services/posts.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -81,7 +81,7 @@ export class AddPostComponent implements OnInit, OnDestroy{
       return 'You must type something';
     } else if (control?.hasError('minlength')){
       return 'Minimal length is 30';
-    } else{
+    } else {
       return 'Maximum length is 200';
     }
   }
@@ -91,7 +91,7 @@ export class AddPostComponent implements OnInit, OnDestroy{
 
     if (control?.hasError('required')){
       return 'You must enter user id';
-    } else{
+    } else {
       return 'Enter number between 1 and 10';
     }
   }

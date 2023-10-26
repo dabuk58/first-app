@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PostsService } from '../../services/posts.service';
+import { PostsService } from '../../../services/posts.service';
 import { Post } from '../../models/post.model';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-view-posts',
@@ -19,7 +19,7 @@ export class ViewPostsComponent implements OnInit, OnDestroy{
     this.postsService.fetchPosts().subscribe(posts => {
       this.posts = posts;
       this.isLoading = false;
-    });;
+    });
   }
 
   ngOnDestroy(): void {
