@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class LikesService {
   private likes: number = 1396;
   private amountOfLikes = new BehaviorSubject<number>(this.likes);
+  //private amountOfLikes = new Subject<number>(this.likes);
 
   get getLikes(){
     return this.amountOfLikes.asObservable();
