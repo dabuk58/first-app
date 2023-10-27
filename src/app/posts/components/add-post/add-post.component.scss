@@ -6,9 +6,10 @@
 }
 
 
-.card-center{
+ mat-card{
     display: flex;
     align-items: center;
+    animation: fadein 0.3s;
 }
 
 mat-card-header{
