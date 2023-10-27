@@ -4,15 +4,17 @@ import { RouterModule } from '@angular/router';
 
 import { CommentsService } from 'src/app/services/comments.service';
 import { CommentsComponent } from './comments.component';
-import { CommentDetailsComponent } from './components/comment-details/comment-details.component';
+import { CommentsDetailsComponent } from './components/comments-details/comments-details.component';
 import { CommentsRoutingModule } from './comments-routing.module';
 import { MaterialModule } from '../shared/material.module';
+import { CommentComponent } from './components/comment/comment.component';
 
 
 @NgModule({
   declarations: [
     CommentsComponent,
-    CommentDetailsComponent
+    CommentsDetailsComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,
