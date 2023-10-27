@@ -8,7 +8,8 @@
             {{ post.body }}
         </mat-card-content>
         <mat-card-actions>
-            <div class="postedBy">Posted by user #{{ post.userId }}</div>
+            <div class="posted-by">Posted by user #{{ post.userId }}</div>
+            <button mat-button (click)="onLike()">Like</button>
             <button mat-button [routerLink]="[post.id]">Comments</button>
         </mat-card-actions>
     </mat-card>
