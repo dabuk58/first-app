@@ -3,6 +3,7 @@ import { PostsService } from '../../../services/posts.service';
 import { Post } from '../../models/post.model';
 import { Subscription } from 'rxjs';
 import { LikesService } from 'src/app/services/likes.service';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-view-posts',
@@ -11,17 +12,13 @@ import { LikesService } from 'src/app/services/likes.service';
 })
 export class ViewPostsComponent implements OnInit, OnDestroy{
   posts: Post[] = [];
-  isLoading = true;
   sub!: Subscription;
 
-  constructor(private postsService: PostsService,
+  constructor(private route: ActivatedRoute,
               private likesService: LikesService){}
 
   ngOnInit(): void {
-    this.postsService.fetchPosts().subscribe(posts => {
-      this.posts = posts;
-      this.isLoading = false;
-    });
+    this.posts = this.route.snapshot.data['posts'];
   }
 
   onLike(){
