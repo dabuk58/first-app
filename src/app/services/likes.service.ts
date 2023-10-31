@@ -4,10 +4,12 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class LikesService {
-  private likes: number = 1396;
+export class LikesService{
+  private likes: number = this.getRandomNumber(2000, 15000);
   private amountOfLikes = new BehaviorSubject<number>(this.likes);
   //private amountOfLikes = new Subject<number>(this.likes);
+
+  constructor() { }
 
   get getLikes(){
     return this.amountOfLikes.asObservable();
@@ -18,5 +20,7 @@ export class LikesService {
     this.amountOfLikes.next(this.likes);
   }
 
-  constructor() { }
+  getRandomNumber(min: number, max: number){
+    return Math.floor(Math.random() * (max - min) + min);
+  }
 }
