@@ -1,8 +1,5 @@
 <mat-card>
-    <mat-card-header>
-        <mat-card-actions>Comment id: {{ commentToDisplay.id }}</mat-card-actions>
-        <mat-card-actions>Commented by: {{ commentToDisplay.email }}</mat-card-actions>
-    </mat-card-header>
+    <mat-card-subtitle>Comment id: {{ commentToDisplay.id }}, By: {{ commentToDisplay.email }}</mat-card-subtitle>
     <mat-card-content>
         {{ commentToDisplay.body }}
     </mat-card-content>
