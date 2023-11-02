@@ -54,7 +54,7 @@ const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator
         interactionType: InteractionType.Redirect,
         protectedResourceMap: new Map(
           [
-            ['https://graph.microsoft.com/v1.0/me', ['user.Read']]
+            ['https://graph.microsoft.com/v1.0/me', ['user.read']]
           ]
         )
       }

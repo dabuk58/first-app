@@ -19,6 +19,7 @@ export class AzureAdDemoService {
     return this.httpClient.get<Profile>(GRAPH_ENDPOINT);
   }
 
+  //not working for now
   getUserProfilePic(){
     return this.httpClient.get(GRAPH_ENDPOINT_PIC, {
       responseType: 'blob'

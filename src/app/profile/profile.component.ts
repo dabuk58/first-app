@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AzureAdDemoService } from '../services/azure-ad-demo.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Profile } from './models/profile.model';
@@ -8,13 +8,17 @@ import { Profile } from './models/profile.model';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   profile?: Profile;
   profilePic?: SafeResourceUrl;
 
   constructor(private azureAdDemoService: AzureAdDemoService,
               private domSanitizer: DomSanitizer){}
 
+  ngOnInit(): void {
+    this.getProfile();
+    // this.getProfilePic();
+  }
 
   getProfile(){
     this.azureAdDemoService.getUserProfile()

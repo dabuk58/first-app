@@ -17,6 +17,9 @@
     &-profile-button{
         margin-right: 20px;
     }
+    &-profile-image{
+        background-size: cover;
+    }
 }
 
 .mat-mdc-raised-button:not(:disabled) {

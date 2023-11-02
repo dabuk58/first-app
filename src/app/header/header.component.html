@@ -6,6 +6,7 @@
     <button mat-button class="header-button" routerLink="posts/add-post">Add post</button>
     <div class="likes-counter" > Total likes: {{ amountOfLikes }}</div>
     <button [disabled]="!isLoggedIn" (click)="onProfile()" mat-button class="header-profile-button" routerLink="profile">Profile</button>
+    <!-- <div mat-card-avatar class="header-profile-image"></div> -->
     <button
     *ngIf="!isLoggedIn"
     mat-raised-button
