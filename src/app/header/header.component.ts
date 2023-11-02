@@ -3,6 +3,8 @@ import { LikesService } from '../services/likes.service';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
 import { Subject, filter, takeUntil } from 'rxjs';
 import { InteractionStatus, RedirectRequest } from '@azure/msal-browser';
+import { environment } from '../environments/environment';
+import { AzureAdDemoService } from '../services/azure-ad-demo.service';
 
 @Component({
   selector: 'app-header',
@@ -17,19 +19,22 @@ export class HeaderComponent implements OnInit, OnDestroy{
   constructor(private likesService: LikesService,
               @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
               private msalBroadcastService: MsalBroadcastService,
-              private authService: MsalService){}
+              private authService: MsalService,
+              private azureAdDemoService: AzureAdDemoService){}
 
   ngOnInit(): void {
     this.likesService.getLikes.subscribe(likes => {
       this.amountOfLikes = likes;
     });
+
     this.msalBroadcastService.inProgress$.pipe(
       filter((interactionStatus: InteractionStatus) => 
         interactionStatus == InteractionStatus.None),
         takeUntil(this._destroy)
     ).subscribe(x => {
       this.isLoggedIn = this.authService.instance.getAllAccounts().length > 0;
-    })
+      this.azureAdDemoService.isLoggedIn.next(this.isLoggedIn);
+    });
   }
 
   onLogin(){
@@ -41,7 +46,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
 
   onLogout(){
-    //this.authService.logoutRedirect({postLogoutRedirectUri: environment.postLogoutRedirectUri});
+    this.authService.logoutRedirect({postLogoutRedirectUri: environment.postLogoutUrl});
+  }
+
+  onProfile(){
+
   }
 
   ngOnDestroy(): void {

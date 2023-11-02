@@ -12,6 +12,7 @@ import { ModifyUrlInterceptor } from './posts/interceptors/modify-url.intercepto
 import { FilterNumbersInterceptor } from './posts/interceptors/filter-numbers.interceptor';
 import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
+import { AzureAdDemoService } from './services/azure-ad-demo.service';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
@@ -61,7 +62,8 @@ const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator
   { provide: HTTP_INTERCEPTORS, useClass: ModifyUrlInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: FilterNumbersInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true},
-  MsalGuard
+  MsalGuard,
+  AzureAdDemoService
 ],
   bootstrap: [AppComponent, MsalRedirectComponent]
 })
