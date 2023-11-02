@@ -13,13 +13,15 @@ import { FilterNumbersInterceptor } from './posts/interceptors/filter-numbers.in
 import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { AzureAdDemoService } from './services/azure-ad-demo.service';
+import { ProfileComponent } from './profile/profile.component';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -8,16 +8,14 @@
 
 .header{
     &-button{
-        font-weight: bold;
         margin-left: 10px;
     }
 
     &-button-first{
-        font-weight: bold;
         margin-left: 40px;
     }
-    &-login-button{
-        font-weight: bold;
+    &-profile-button{
+        margin-right: 20px;
     }
 }
 
