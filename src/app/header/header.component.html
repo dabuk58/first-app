@@ -5,4 +5,15 @@
     <button mat-button class="header-button-first" routerLink="posts">Explore posts</button>
     <button mat-button class="header-button" routerLink="posts/add-post">Add post</button>
     <div class="likes-counter" > Total likes: {{ amountOfLikes }}</div>
+    <button
+    *ngIf="!isLoggedIn"
+    mat-raised-button
+    class="header-login-button"
+    (click)="onLogin()">Login</button>
+    
+    <button
+    *ngIf="isLoggedIn"
+    mat-raised-button
+    class="header-login-button"
+    (click)="onLogout()">Logout</button>
 </mat-toolbar>

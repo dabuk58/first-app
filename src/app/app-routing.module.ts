@@ -12,7 +12,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    bindToComponentInputs: true
+    bindToComponentInputs: true,
+    initialNavigation: 'enabledBlocking'
   })],
   exports: [RouterModule]
 })

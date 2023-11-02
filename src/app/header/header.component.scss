@@ -16,6 +16,13 @@
         font-weight: bold;
         margin-left: 40px;
     }
+    &-login-button{
+        font-weight: bold;
+    }
+}
+
+.mat-mdc-raised-button:not(:disabled) {
+    color: #673ab7;
 }
 
 mat-toolbar{
@@ -29,3 +36,4 @@ mat-toolbar{
     margin-right: 50px;
     font-size: 15px;
 }
+
