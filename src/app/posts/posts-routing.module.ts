@@ -13,7 +13,6 @@ const routes: Routes = [
     { path: 'add-post', component: AddPostComponent, canDeactivate: [addPostGuard]},
     { path: ':postId',
       loadChildren: () => import('../comments/comments.module').then(m => m.CommentsModule),
-      resolve: { comments: commentResolver}
     }
 ];
 

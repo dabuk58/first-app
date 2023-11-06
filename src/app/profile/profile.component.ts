@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AzureAdDemoService } from '../services/azure-ad-demo.service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { Profile } from './models/profile.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { AuthService, UserInfo } from '../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,30 +7,18 @@ import { Profile } from './models/profile.model';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  profile?: Profile;
-  profilePic?: SafeResourceUrl;
+  @Input() userInfo!: UserInfo;
 
-  constructor(private azureAdDemoService: AzureAdDemoService,
-              private domSanitizer: DomSanitizer){}
+  constructor(private  authService: AuthService){}
 
-  ngOnInit(): void {
-    this.getProfile();
-    // this.getProfilePic();
+  ngOnInit(): void { }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 
-  getProfile(){
-    this.azureAdDemoService.getUserProfile()
-      .subscribe(profileInfo => {
-        this.profile = profileInfo;
-      });
-  }
-
-  getProfilePic(){
-    this.azureAdDemoService.getUserProfilePic()
-      .subscribe(response => {
-        var urlCreator = window.URL || window.webkitURL;
-        this.profilePic = this.domSanitizer.bypassSecurityTrustResourceUrl(urlCreator.createObjectURL(response));
-      })
+  logout(){
+    this.authService.signOut();
   }
 
 }

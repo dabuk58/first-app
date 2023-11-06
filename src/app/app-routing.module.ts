@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PostsComponent } from './posts/posts.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MsalGuard } from '@azure/msal-angular';
+import { profileGuard } from './guards/profile.guard';
+import { profileResolver } from './services/resolvers/profile-resolve.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'posts', pathMatch: 'full'},
@@ -13,7 +15,8 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [MsalGuard]
+    canActivate: [profileGuard],
+    resolve: { userInfo: profileResolver }
   }
 ];
 
