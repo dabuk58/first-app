@@ -2,6 +2,7 @@ import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
 import { InteractionStatus, RedirectRequest } from '@azure/msal-browser';
 import { Subject, filter, takeUntil } from 'rxjs';
+import { environment } from 'src/app/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 
 declare global {
@@ -48,13 +49,13 @@ export class LoginPageComponent implements OnInit, OnDestroy{
     const s = this.renderer.createElement('script');
     s.type = 'text/javascript';
     s.src = 'https://accounts.google.com/gsi/client';
-    s.onload = () => this.renderButton();
+    s.onload = () => this.renderGoogleButton();
     this.renderer.appendChild(document.head, s);
   }
 
-  renderButton = () => {
+  renderGoogleButton = () => {
     window.google.accounts.id.initialize({
-      client_id: '210457726639-m5940hkuceh1v1i722k6k5qr487vcq6l.apps.googleusercontent.com',
+      client_id: environment.googleClientId,
       callback: this.handleCredentialResponse
     });
 
