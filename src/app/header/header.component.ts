@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { LikesService } from '../services/likes.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -13,17 +13,15 @@ export class HeaderComponent implements OnInit, OnDestroy{
   amountOfLikes!: number;
   isLoggedIn: boolean = false;
   private readonly _destroy = new Subject<void>;
+  user!: gapi.auth2.GoogleUser | null;
 
   constructor(private likesService: LikesService,
               private authService: AuthService,
-              private router: Router){ }
+              private router: Router,
+              private ref: ChangeDetectorRef){ }
 
   ngOnInit(): void {
-    this.authService.isLoggedIn$.pipe(
-      takeUntil(this._destroy)
-    ).subscribe( isLoggedIn => {
-      this.isLoggedIn = isLoggedIn;
-    });
+
 
     this.likesService.getLikes.pipe(
       takeUntil(this._destroy)
@@ -33,7 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
 
   onLogin(){
-    this.authService.login();
+    this.router.navigateByUrl('/login');
   }
 
   onLogout(){

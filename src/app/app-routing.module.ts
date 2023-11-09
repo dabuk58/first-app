@@ -5,6 +5,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MsalGuard } from '@azure/msal-angular';
 import { profileGuard } from './guards/profile.guard';
 import { profileResolver } from './services/resolvers/profile-resolve.service';
+import { LoginPageComponent } from './header/login-page/login-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'posts', pathMatch: 'full'},
@@ -17,6 +18,10 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [profileGuard],
     resolve: { userInfo: profileResolver }
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent
   }
 ];
 

@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PostsService } from '../../../services/posts.service';
 import { Post } from '../../models/post.model';
 import { Subscription } from 'rxjs';
 import { LikesService } from 'src/app/services/likes.service';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-posts',

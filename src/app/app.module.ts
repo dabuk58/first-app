@@ -8,16 +8,19 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
 import { MaterialModule } from './shared/material.module';
-import { ModifyUrlInterceptor } from './posts/interceptors/modify-url.interceptor';
-import { FilterNumbersInterceptor } from './posts/interceptors/filter-numbers.interceptor';
+import { ModifyUrlInterceptor } from './services/interceptors/modify-url.interceptor';
+import { FilterNumbersInterceptor } from './services/interceptors/filter-numbers.interceptor';
 import { ProfileComponent } from './profile/profile.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { LoginPageComponent } from './header/login-page/login-page.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

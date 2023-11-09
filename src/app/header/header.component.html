@@ -8,12 +8,12 @@
     <button (click)="onProfile()" mat-button class="header-profile-button" routerLink="profile">Profile</button>
     <!-- <div mat-card-avatar class="header-profile-image"></div> -->
     <button
-    *ngIf="!isLoggedIn"
+    *ngIf="user == null"
     mat-raised-button
     class="header-login-button"
     (click)="onLogin()">Login</button>
     <button
-    *ngIf="isLoggedIn"
+    *ngIf="user != null"
     mat-raised-button
     class="header-login-button"
     (click)="onLogout()">Logout</button>
