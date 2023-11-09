@@ -13,6 +13,7 @@ import { FilterNumbersInterceptor } from './services/interceptors/filter-numbers
 import { ProfileComponent } from './profile/profile.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { LoginPageComponent } from './header/login-page/login-page.component';
+import { AuthInterceptor } from './services/interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { LoginPageComponent } from './header/login-page/login-page.component';
   ],
   providers: [
   { provide: HTTP_INTERCEPTORS, useClass: ModifyUrlInterceptor, multi: true },
-  { provide: HTTP_INTERCEPTORS, useClass: FilterNumbersInterceptor, multi: true }
+  { provide: HTTP_INTERCEPTORS, useClass: FilterNumbersInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
 ],
   bootstrap: [AppComponent]
 })
