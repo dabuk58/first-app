@@ -1,4 +1,8 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
+import { InteractionStatus, RedirectRequest } from '@azure/msal-browser';
+import { Subject, filter, takeUntil } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 declare global {
   interface Window { google: any; }
@@ -9,12 +13,35 @@ declare global {
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit{
+export class LoginPageComponent implements OnInit, OnDestroy{
+  private readonly _destroy = new Subject<void>;
+  isLoggedIn: boolean = false;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2,
+              @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
+              private msalBroadcastService: MsalBroadcastService,
+              private msalService: MsalService,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadGoogleIdentityScript();
+
+    this.msalBroadcastService.inProgress$.pipe(
+      filter((interactionStatus: InteractionStatus) => 
+        interactionStatus == InteractionStatus.None),
+        takeUntil(this._destroy)
+    ).subscribe(x => {
+      this.isLoggedIn = this.msalService.instance.getAllAccounts().length > 0;
+      this.authService.isLoggedIn.next(this.isLoggedIn);
+    });
+  }
+
+  onMicrosoftLogin(){
+    if(this.msalGuardConfig.authRequest){
+      this.msalService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest);
+    } else {
+      this.msalService.loginRedirect();
+    }
   }
 
   loadGoogleIdentityScript() {
@@ -43,5 +70,11 @@ export class LoginPageComponent implements OnInit{
     console.log('Token: ' + response.credential);
     localStorage.setItem('google-token', response.credential);
   };
+
+
+  ngOnDestroy(): void {
+    this._destroy.next(undefined);
+    this._destroy.complete();
+  }
 
 }
