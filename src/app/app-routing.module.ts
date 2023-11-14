@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { profileGuard } from './guards/profile.guard';
 import { profileResolver } from './services/resolvers/profile-resolve.service';
 import { LoginPageComponent } from './header/login-page/login-page.component';
+import { LocalLoginComponent } from './components/local-login/local-login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'posts', pathMatch: 'full'},
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent
+  },
+  {
+    path: 'local-login',
+    component: LocalLoginComponent
   }
 ];
 

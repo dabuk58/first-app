@@ -6,12 +6,12 @@
     <button mat-button class="header-button" routerLink="posts/add-post">Add post</button>
     <div class="likes-counter" > Total likes: {{ amountOfLikes }}</div>
     <button
-    *ngIf="user == null"
+    *ngIf="true"
     mat-raised-button
     class="header-login-button"
     (click)="onLogin()">Login</button>
     <button
-    *ngIf="user != null"
+    *ngIf="false"
     mat-raised-button
     class="header-login-button"
     (click)="onLogout()">Logout</button>

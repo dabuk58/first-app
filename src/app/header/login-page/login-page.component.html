@@ -2,8 +2,11 @@
     <mat-card>
         <mat-card-content>
             <div id="buttonDiv"></div>
-            <div class="microsoft">
+            <div class="login">
                 <button mat-stroked-button (click)="onMicrosoftLogin()">Login with Microsoft</button>
+            </div>
+            <div class="login">
+                <button mat-stroked-button routerLink="/local-login">Login locally</button>
             </div>
         </mat-card-content>
     </mat-card>

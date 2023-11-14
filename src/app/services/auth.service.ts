@@ -20,6 +20,7 @@ export interface Profile{
 })
 export class AuthService {
   isLoggedIn: Subject<boolean> = new Subject<boolean>;
+  isLocallyLoggedIn: boolean = false;
 
   constructor(private http: HttpClient) { }
 

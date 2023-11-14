@@ -15,6 +15,8 @@ import { AuthInterceptor } from './services/interceptors/auth.interceptor';
 import { AuthService } from './services/auth.service';
 import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
+import { LocalLoginComponent } from './components/local-login/local-login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
@@ -22,7 +24,8 @@ const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    LocalLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MsalModule.forRoot(new PublicClientApplication
       (
         {

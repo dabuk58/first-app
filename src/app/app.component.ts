@@ -10,5 +10,7 @@ export class AppComponent implements OnDestroy{
 
   ngOnDestroy(): void {
     localStorage.removeItem('google-token');
+    localStorage.removeItem('password');
+    localStorage.removeItem('login');
   }
 }

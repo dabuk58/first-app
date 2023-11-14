@@ -13,16 +13,12 @@ export class HeaderComponent implements OnInit, OnDestroy{
   amountOfLikes!: number;
   isLoggedIn: boolean = false;
   private readonly _destroy = new Subject<void>;
-  user!: gapi.auth2.GoogleUser | null;
 
   constructor(private likesService: LikesService,
               private authService: AuthService,
-              private router: Router,
-              private ref: ChangeDetectorRef){ }
+              private router: Router){ }
 
   ngOnInit(): void {
-
-
     this.likesService.getLikes.pipe(
       takeUntil(this._destroy)
     ).subscribe(likes => {
