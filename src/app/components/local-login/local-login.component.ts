@@ -33,9 +33,15 @@ export class LocalLoginComponent implements OnInit {
 
     this.isLoggedInLocally = true;
 
-    setTimeout(() => {
-      const iframeElement = document.getElementById('iframe') as HTMLIFrameElement;
-      iframeElement.contentWindow?.postMessage({login: login, password: password}, 'http://localhost:5000');
-    }, 300);
+    window.addEventListener("message", (event) => {
+      if(event.origin !== "http://localhost:5000"){
+        return;
+      } else if (event.data == true){
+        const iframeElement = document.getElementById('iframe') as HTMLIFrameElement;
+        iframeElement.contentWindow?.postMessage({login: login, password: password}, 'http://localhost:5000');
+      } else {
+        return;
+      }
+    });
   }
 }

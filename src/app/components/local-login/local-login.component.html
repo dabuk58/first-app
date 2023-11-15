@@ -14,7 +14,7 @@
                     <mat-error *ngIf="formGroup.get('password')?.invalid"> Can not be empty </mat-error>
                 </mat-form-field>
             </form>
-            <button mat-raised-button class="button-text" (click)="onLogin()">Login</button>
+            <button [disabled]="formGroup.get('password')?.invalid || formGroup.get('login')?.invalid" mat-raised-button class="button-text" (click)="onLogin()">Login</button>
         </mat-card-content>
     </mat-card>
     <iframe id="iframe" src="http://localhost:5000" *ngIf="isLoggedInLocally" width="80%" height="80%"></iframe>
